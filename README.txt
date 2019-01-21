@@ -7,5 +7,3 @@ Por:
 README completo por fazer...
 
 
-OLÁ
-HAAAAAAAAHA
