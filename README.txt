@@ -5,6 +5,11 @@ Por:
  *Gedor Neto
 
 README completo por fazer...
+<<<<<<< Updated upstream
 escrevi e sai correndo pau no cu de quem ta lendo
+=======
+ALTEREI
+EU TO COM FOME 
+>>>>>>> Stashed changes
 
 
