@@ -15,6 +15,7 @@ Entity = Object:extend()
 ]]
 
 function Entity:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweenFrames, numberOfFrames)
+<<<<<<< Updated upstream
     self.sprite = love.graphics.newImage(imgPath)
     self.width = self.sprite:getWidth()
     self.height = self.sprite:getHeight()
@@ -33,6 +34,27 @@ function Entity:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweenFrames, n
     for i= 0, numberOfFrames - 1 do
         table.insert(self.frames, love.graphics.newQuad( (i * self.frameWidth) + i * self.spaceBtweenFrames, 0, self.frameWidth, self.frameHeight, self.width, self.height))
     end
+=======
+  self.sprite = love.graphics.newImage(imgPath)
+  self.width = self.sprite:getWidth()
+  self.height = self.sprite:getHeight()
+
+  self.frames = {}
+  self.spaceBtweenFrames = spaceBtweenFrames
+  self.numberOfFrames = numberOfFrames
+
+  self.currentFrame = 1
+  self.frameWidth = frameWidth
+  self.frameHeight = frameHeight
+
+  self.x = x
+  self.y = y
+
+  for i = 0, numberOfFrames - 1 do
+    table.insert(self.frames, love.graphics.newQuad( (i * self.frameWidth) + i * self.spaceBtweenFrames, 0, self.frameWidth, self.frameHeight, self.width, self.height))
+    print("inseriu")
+  end
+>>>>>>> Stashed changes
 
 end
 
@@ -40,9 +62,10 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-    love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y)
+  love.graphics.draw(self.sprite, self.x, self.y)
 end
 
+<<<<<<< Updated upstream
 function Entity:getHeight()
     return self.frameHeight
 end
@@ -58,3 +81,8 @@ function Entity:getCoordinates()
 
     return coordinates
 end
+=======
+function Entity:nextFrame()
+  self.currentFrame = ((self.currentFrame) % self.numberOfFrames ) + 1
+end
+>>>>>>> Stashed changes
