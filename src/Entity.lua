@@ -38,9 +38,12 @@ function Entity:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweenFrames, n
 end
 
 function Entity:update(dt)
-    self.currentFrame = ((self.currentFrame) % self.numberOfFrames ) + 1
 end
 
 function Entity:draw()
     love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y)
+end
+
+function Entity:nextFrame()
+    self.currentFrame = ((self.currentFrame) % self.numberOfFrames ) + 1
 end
