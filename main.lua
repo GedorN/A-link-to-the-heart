@@ -11,8 +11,8 @@ end
 
 function love.update(dt)
   require("src.lurker").update()
-  print("k")
 end
+
 
 function love.draw()
   bg:draw()
@@ -24,3 +24,4 @@ function love.keypressed(key)
     print("Obrigado por jogar A link to the heart ;)")
   end
 end
+
