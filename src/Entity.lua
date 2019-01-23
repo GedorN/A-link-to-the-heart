@@ -52,9 +52,9 @@ function Entity:getWidth()
 end
 
 function Entity:getCoordinates()
+    print("fui chamada")
     local coordinates = {}
     table.insert(coordinates, self.x)
     table.insert(coordinates, self.y)
-
     return coordinates
 end
