@@ -21,53 +21,51 @@ Character = Entity:extend()
 
 
 function Character:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrames, numberOfFrames, initialHealth, speed, jumpForce)
-    Character.super.new(self, imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrames, numberOfFrames)
-    self.health = initialHealth
-    self.speed = speed
-    self.jump = jumpForce
+  Character.super.new(self, imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrames, numberOfFrames)
+  self.health = initialHealth
+  self.speed = speed
+  self.jump = jumpForce
 
 end
 
 function Character:update(dt)
-  
+
 end
 
 function Character:draw()
-    Character.super.draw(self)
+  Character.super.draw(self)
 end
 
 function Character:nextFrame()
-    self.currentFrame = ((self.currentFrame) % self.numberOfFrames ) + 1
+  self.currentFrame = ((self.currentFrame) % self.numberOfFrames ) + 1
 end
 
 function Character:setCoordinateX(valueOfX)
-    self.x = valueOfX
+  self.x = valueOfX
 end
 
 function Character:setCoordinateY(valueOfY)
-    self.y = valueOfY
+  self.y = valueOfY
 end
 
 --****************** Essa função recebe um vetor contento value[1] = x e value[2] = y ************--
 function Character:setCoordinates(value)
-    self.x = value[1]
-    self.y = value[2]
+  self.x = value[1]
+  self.y = value[2]
 end
 
 function Character:setDamage(damage)
-    self.health = self.health - damage
+  self.health = self.health - damage
 end
 
 function Character:getSpeed()
-    return self.speed
+  return self.speed
 end
 
 function Character:getJump()
-    return self.jump
+  return self.jump
 end
 
 function Character:getHealth()
-    return self.health
+  return self.health
 end
-
-
