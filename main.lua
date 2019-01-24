@@ -18,20 +18,6 @@ function love.load()
   require("src.Enemy")
   require("src.Player")
   require("src.Background")
-<<<<<<< Updated upstream
-  love.graphics.setDefaultFilter('nearest', 'nearest')
-  canvas = love.graphics.newCanvas(800, 600)
-  camera = Camera(200, 150, 400, 300)
-  camera:setFollowStyle('LOCKON')
-  camera:setFollowLerp(0.2)
-  frames = 1
-  bg = Background("img/back.png", 0, 0)
-  p = Player("img/player.png", 100, 100, 49, 84, 10, 5, 100, 200, 50)
-  love.window.setMode(800, 600)
-  love.window.setFullscreen(true)
-  x = 0
-  y = 0
-=======
   push = require("src.push")
   --Require--
   local _, _, flags = love.window.getMode()
@@ -49,7 +35,6 @@ function love.load()
   x = 960
   y = 540
   camera:lookAt(x, y)
->>>>>>> Stashed changes
 end
 --[[  Anotação sobre a Camera:
 O tamanho da camera é calculado considerando o width e height dividido por 2 respectivamente,
@@ -66,12 +51,6 @@ camsizeY = y / Zoom
 colocar para seguir um objeto, gera efeito de movimento da camera até o objeto. Focando.
 ]]
 function love.update(dt)
-<<<<<<< Updated upstream
-  camera:update(dt)
-  p:update(dt, frames)
-  camera:follow(p:getCoordinateX(), p:getCoordinateY())
-=======
->>>>>>> Stashed changes
   require("src.lurker").update()
   camera_track(x, y)
 
@@ -95,16 +74,10 @@ end
 function love.draw()
   push:start()
   camera:attach()
-<<<<<<< Updated upstream
-  bg:draw()
-  -- draw aqui.
-  p:draw()
-=======
   -- Inicio Draw.
   bg:draw()
   love.graphics.points(x, y)
   -- Fim Draw.
->>>>>>> Stashed changes
   camera:detach()
   push:finish()
 end
