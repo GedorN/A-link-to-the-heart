@@ -3,23 +3,27 @@ function love.load()
   Camera = require ("src.Camera")
   require("src.Entity")
   require("src.Character")
+  require("src.Enemy")
+  require("src.Player")
   require("src.Background")
   love.graphics.setDefaultFilter('nearest', 'nearest')
   canvas = love.graphics.newCanvas(800, 600)
   camera = Camera(200, 150, 400, 300)
   camera:setFollowStyle('LOCKON')
   camera:setFollowLerp(0.2)
-
-  bg = Background("img/hh.png", 0, 0)
-
+  frames = 1
+  bg = Background("img/back.png", 0, 0)
+  p = Player("img/player.png", 100, 100, 49, 84, 10, 5, 100, 200, 50)
   love.window.setMode(800, 600)
+  love.window.setFullscreen(true)
   x = 0
   y = 0
 end
 
 function love.update(dt)
   camera:update(dt)
-  camera:follow(x, y)
+  p:update(dt, frames)
+  camera:follow(p:getCoordinateX(), p:getCoordinateY())
   require("src.lurker").update()
   if love.keyboard.isDown("w") then
     y = y - 100 * dt
@@ -33,6 +37,7 @@ function love.update(dt)
   if love.keyboard.isDown("d") then
     x = x + 100 * dt
   end
+  frames = (frames % 61) + 1
 end
 
 
@@ -40,9 +45,9 @@ function love.draw()
   love.graphics.setCanvas(canvas)
   love.graphics.clear()
   camera:attach()
-  -- draw aqui.
   bg:draw()
-  love.graphics.points(x, y)
+  -- draw aqui.
+  p:draw()
   camera:detach()
   love.graphics.setCanvas()
 

@@ -20,22 +20,16 @@ Character = Entity:extend()
 ]]
 
 
-
-
-
-
 function Character:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrames, numberOfFrames, initialHealth, speed, jumpForce)
     Character.super.new(self, imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrames, numberOfFrames)
     self.health = initialHealth
     self.speed = speed
     self.jump = jumpForce
 
-    self.originInX = frameWidth / 2
-    self.originInY = frameHeight / 2
 end
 
 function Character:update(dt)
-    
+  
 end
 
 function Character:draw()

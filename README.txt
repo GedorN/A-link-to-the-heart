@@ -6,3 +6,6 @@ Por:
  *Gedor Neto
 
 README completo por fazer...
+
+
+JUST DO IT
