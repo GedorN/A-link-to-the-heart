@@ -27,8 +27,12 @@ function Entity:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweenFrames, n
     self.frameWidth = frameWidth
     self.frameHeight = frameHeight
 
+    self.originInX = frameWidth / 2
+    self.originInY = frameHeight / 2
+
     self.x = x
     self.y = y
+    self.orientation = 1
 
     for i= 0, numberOfFrames - 1 do
         table.insert(self.frames, love.graphics.newQuad( (i * self.frameWidth) + i * self.spaceBtweenFrames, 0, self.frameWidth, self.frameHeight, self.width, self.height))
@@ -40,7 +44,7 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-    love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y)
+    love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y, 0, orientation ,1 )
 end
 
 function Entity:getHeight()
@@ -57,3 +61,12 @@ function Entity:getCoordinates()
     table.insert(coordinates, self.y)
     return coordinates
 end
+
+function Entity:getCoordinateX()
+    return self.x
+end
+
+function Entity:getCoordinateY()
+    return self.y
+end
+

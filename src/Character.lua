@@ -26,9 +26,6 @@ function Character:new(imgPath, x, y, frameWidth, frameHeight, spaceBtweeenFrame
     self.speed = speed
     self.jump = jumpForce
 
-    self.originInX = frameWidth / 2
-    self.originInY = frameHeight / 2
-
 end
 
 function Character:update(dt)
