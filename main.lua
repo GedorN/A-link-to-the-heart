@@ -16,7 +16,7 @@ function love.load()
   require("src.Entity")
   require("src.Character")
   require("src.Enemy")
-  require("src.Player")
+  --require("src.Player")
   require("src.Background")
   push = require("src.push")
   --Require--
@@ -67,7 +67,7 @@ function love.update(dt)
   if love.keyboard.isDown("d") then
     x = x + 100 * dt
   end
-  frames = (frames % 61) + 1
+  --frames = (frames % 61) + 1
 end
 
 
