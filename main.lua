@@ -1,11 +1,11 @@
 function camera_track(x, y)
   w = (width / 2) / Zoom
   h = (height / 2) / Zoom
-  if x - w >= 0 and x + w <= width then
+  if x - w >= -500 and x + w <= width + 500 then
     camera:lockX(x, Camera.smooth.damped(2))
   end
 
-  if y - h >= 0 and y + h <= height then
+  if y - h >= -500 and y + h <= height + 500 then
     camera:lockY(y, Camera.smooth.damped(2))
   end
 end
@@ -16,7 +16,8 @@ function love.load()
   require("src.Entity")
   require("src.Character")
   require("src.Enemy")
-  --require("src.Player")
+  require("src.Player")
+  require("src.MinorPhantom")
   require("src.Background")
   push = require("src.push")
   --Require--
@@ -28,13 +29,18 @@ function love.load()
   push:setupScreen(width, height, width, height, {fullscreen = true}) -- GameScreen Settings.
 
   Zoom = 2
-  bg = Background("img/hh.png", 0, 0)
+  bg = Background("img/back.png", 0, 0)
   camera = Camera(0, 0, Zoom)
 
   --- Abaixo apagar quando personagem estiver pronto.
   x = 960
   y = 540
-  camera:lookAt(x, y)
+  camera:lookAt(0, 0)
+  frames = 1
+
+  p = Player("img/player.png", 500, 500, 49, 83, 10, 5, 100, 200, 50)
+  ph = MinorPhantom("img/minorPhantom.png", 500, 500, 62, 75, 0, 1, 100, 50, 20, 800)
+
 end
 --[[  Anotação sobre a Camera:
 O tamanho da camera é calculado considerando o width e height dividido por 2 respectivamente,
@@ -51,8 +57,10 @@ camsizeY = y / Zoom
 colocar para seguir um objeto, gera efeito de movimento da camera até o objeto. Focando.
 ]]
 function love.update(dt)
-  require("src.lurker").update()
-  camera_track(x, y)
+  -- require("src.lurker").update()
+  p:update(dt, frames)
+  ph:update(dt, frames)
+  camera_track(p:getCoordinateX(), p:getCoordinateY())
 
   if love.keyboard.isDown("w") then
     y = y - 100 * dt
@@ -67,7 +75,7 @@ function love.update(dt)
   if love.keyboard.isDown("d") then
     x = x + 100 * dt
   end
-  --frames = (frames % 61) + 1
+  frames = (frames % 61) + 1
 end
 
 
@@ -75,8 +83,13 @@ function love.draw()
   push:start()
   camera:attach()
   -- Inicio Draw.
-  bg:draw()
-  love.graphics.points(x, y)
+  for i = 0, 2 * 1920 / bg:getWidth() do
+    for j = 0, 1080 / bg:getHeight() do
+        bg:draw (i* bg:getWidth(), j * bg:getHeight())
+    end
+  end
+  p:draw()
+  ph:draw()
   -- Fim Draw.
   camera:detach()
   push:finish()

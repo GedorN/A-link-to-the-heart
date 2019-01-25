@@ -44,7 +44,7 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-    love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y, 0, orientation ,1 )
+    love.graphics.draw(self.sprite, self.frames[math.floor(self.currentFrame)], self.x, self.y, 0, self.orientation ,1, self.originInX, self.originInY )
 end
 
 function Entity:getHeight()
